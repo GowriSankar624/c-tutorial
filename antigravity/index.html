@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C Programming Tutorial — Learn C from Scratch</title>
+  <meta name="description" content="Master C programming with our comprehensive, interactive tutorial. Learn variables, pointers, memory management, and more with visual explanations and code examples." />
+  <meta name="keywords" content="C programming, C tutorial, learn C, pointers, memory management, beginner C" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="C Programming Tutorial" />
+  <meta property="og:description" content="Interactive C programming tutorial with visual explanations, code examples, and quizzes." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+<!-- Mobile Sidebar Overlay -->
+<div id="sidebar-overlay"></div>
+
+<!-- ===== HEADER ===== -->
+<header id="main-header">
+  <div class="header-left">
+    <button id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+    <a class="logo" onclick="goHome()" href="#">
+      <div class="logo-icon">C</div>
+      <span class="logo-text">C Tutorial</span>
+    </a>
+  </div>
+
+  <div class="header-center">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Search topics…" autocomplete="off" aria-label="Search topics" />
+      <div id="search-results"></div>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="progress-pill" title="Your progress">
+      <span>Progress:</span>
+      <strong id="progress-count">0</strong>/<strong id="progress-total">12</strong>
+    </div>
+  </div>
+</header>
+
+<!-- ===== APP CONTAINER ===== -->
+<div id="app">
+
+  <!-- ===== SIDEBAR ===== -->
+  <nav id="sidebar" aria-label="Topics navigation">
+    <div class="sidebar-section-label">📚 Topics</div>
+    <div id="sidebar-topics">
+      <!-- Rendered by JS -->
+    </div>
+    <!-- Progress at bottom of sidebar -->
+    <div style="padding: 1rem 1.25rem; margin-top: 1rem; border-top: 1px solid var(--border);">
+      <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;">Overall Progress</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="overall-bar" style="width: 0%"></div>
+      </div>
+      <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem;"><span id="overall-pct">0%</span> Complete</div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content">
+
+    <!-- ======================== HOME PAGE ======================== -->
+    <div id="page-home">
+
+      <!-- Hero Section -->
+      <section class="hero-section" aria-label="Hero banner">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <!-- Decorative dots -->
+        <div class="hero-dots" aria-hidden="true">
+          <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+          <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+          <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+          <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+          <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-badge">🚀 Complete C Programming Course</div>
+          <h1 class="hero-title">
+            Master <span class="highlight">C Programming</span><br>from Zero to Pro
+          </h1>
+          <p class="hero-desc">
+            Learn every C concept in detail — with visual diagrams, syntax-highlighted
+            code, simple explanations, and interactive quizzes. No experience needed.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" id="start-btn">
+              ▶ Start Learning
+            </button>
+            <button class="btn-secondary" onclick="document.getElementById('topics-section').scrollIntoView({behavior:'smooth'})">
+              Browse Topics →
+            </button>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">12</div>
+              <div class="stat-label">Chapters</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">60+</div>
+              <div class="stat-label">Code Examples</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">24</div>
+              <div class="stat-label">Quiz Questions</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">∞</div>
+              <div class="stat-label">Free Forever</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topics Grid -->
+      <section id="topics-section">
+        <div class="section-header">
+          <h2 class="section-title">All Topics</h2>
+          <div style="font-size:0.82rem; color:var(--text-muted);">
+            <span id="completed-count">0</span> completed
+          </div>
+        </div>
+        <div class="topics-grid" id="topics-grid">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+    </div><!-- /page-home -->
+
+
+    <!-- ======================== TUTORIAL PAGE ======================== -->
+    <div id="page-tutorial" style="display:none;">
+
+      <!-- Breadcrumb -->
+      <div class="tutorial-header">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <span onclick="goHome()">🏠 Home</span>
+          <span style="color:var(--text-muted)">›</span>
+          <span id="breadcrumb-title">Topic</span>
+        </nav>
+
+        <h1 class="tutorial-title" id="tutorial-title">Topic Title</h1>
+
+        <div class="tutorial-meta">
+          <span class="meta-badge" id="tutorial-difficulty">beginner</span>
+          <span class="meta-badge" id="tutorial-time">⏱ 10 min</span>
+          <span class="meta-badge" id="tutorial-num">Lesson 1 of 12</span>
+        </div>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="tutorial-layout">
+
+        <!-- Main body -->
+        <div class="tutorial-body">
+
+          <!-- Concept sections injected here -->
+          <div id="tutorial-sections">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Quiz Section -->
+          <div class="quiz-section" id="quiz-section">
+            <div class="quiz-title">🧠 Quick Knowledge Check</div>
+            <div class="quiz-subtitle">Test what you've just learned!</div>
+            <div id="quiz-questions">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="tutorial-nav" aria-label="Lesson navigation">
+            <button class="nav-btn" id="nav-prev">
+              ← <div>
+                <span class="nav-label">Previous</span>
+                <span class="nav-text" style="font-weight:600;font-size:0.875rem;display:block"></span>
+              </div>
+            </button>
+            <button class="nav-btn" id="nav-next" style="margin-left:auto;">
+              <div style="text-align:right">
+                <span class="nav-label">Next</span>
+                <span class="nav-text" style="font-weight:600;font-size:0.875rem;display:block"></span>
+              </div>
+              →
+            </button>
+          </nav>
+        </div><!-- /tutorial-body -->
+
+        <!-- Aside -->
+        <aside class="tutorial-aside" aria-label="Table of contents">
+
+          <!-- TOC -->
+          <div class="toc-card">
+            <div class="toc-title">📑 In This Lesson</div>
+            <div id="toc-list">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="progress-card">
+            <div class="toc-title">📊 Your Progress</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="aside-bar" style="width:0%"></div>
+            </div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:0.85rem;">
+              <span id="progress-count2">0</span> of <span id="progress-total2">12</span> lessons complete
+            </div>
+            <button class="mark-done-btn" id="mark-done-btn">✔ Mark as Complete</button>
+          </div>
+
+        </aside>
+
+      </div><!-- /tutorial-layout -->
+
+    </div><!-- /page-tutorial -->
+
+  </main>
+</div><!-- /app -->
+
+<script src="scripts/app.js"></script>
+
+<!-- Sync aside progress bar with sidebar progress -->
+<script>
+  // Patch updateProgressUI to also update aside
+  const _orig = updateProgressUI;
+  function updateProgressUI() {
+    _orig();
+    const pct = Math.round((getProgress() / TOPICS.length) * 100);
+    const aside = document.getElementById('aside-bar');
+    if (aside) aside.style.width = pct + '%';
+    const cnt = document.getElementById('progress-count2');
+    const tot = document.getElementById('progress-total2');
+    const cc  = document.getElementById('completed-count');
+    if (cnt) cnt.textContent = getProgress();
+    if (tot) tot.textContent = TOPICS.length;
+    if (cc)  cc.textContent  = getProgress();
+  }
+  // Call once on load to sync
+  document.addEventListener('DOMContentLoaded', () => setTimeout(updateProgressUI, 50));
+</script>
+
+</body>
+</html>
